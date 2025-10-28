@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tüm Sayfa Kayan Yazı</title>
+    <style>
+        /* 1. Sayfanın Hazırlanması */
+        html, body {
+            height: 100%; /* Sayfanın tüm yüksekliği kaplaması */
+            margin: 0; /* Kenar boşluklarını sıfırla */
+            padding: 0;
+            
+            /* En önemlisi: Yazı ekran dışındayken kaydırma çubukları çıkmasın */
+            overflow: hidden; 
+            
+            /* Zemin (isteğe bağlı) */
+            background-color: #1a1a1a; 
+        }
+
+        /* 2. Hareket Edecek Yazı */
+        .tum-sayfa-yazi {
+            /* Konumlandırma: Sayfa akışından çıkar ve ortala */
+            position: absolute;
+            top: 50%; /* Dikey ortalamanın temeli */
+            
+            /* Yazı Özellikleri */
+            font-size: 20vw; /* Devasa boyut (Viewport Width = Ekran genişliğinin %20'si) */
+            font-weight: bold;
+            color: #f0f0f0;
+            
+            /* Asla alt satıra geçmemesini sağlar */
+            white-space: nowrap; 
+
+            /* Animasyon Tanımı */
+            /* Adı: tumSayfaKaydirma
+               Süresi: 15 saniye (hızı buradan ayarlayın)
+               Hız Tipi: linear (hep aynı hızda)
+               Tekrar: infinite (sonsuz döngü)
+            */
+            animation: tumSayfaKaydirma 7s linear infinite;
+        }
+
+        /* 3. Animasyonun Kendisi (Keyframes) */
+        @keyframes tumSayfaKaydirma {
+            /* Başlangıç (0%) */
+            0% {
+                /* translate(100vw, -50%):
+                   100vw = Ekran genişliği kadar SAĞA git (ekranın tam sağından başla)
+                   -50% = Dikey ortalamayı tamamla (yazının kendi yüksekliğinin yarısı kadar yukarı çık)
+                */
+                transform: translate(100vw, -50%);
+            }
+            
+            /* Bitiş (100%) */
+            100% {
+                /*
+                   translate(-100%, -50%):
+                   -100% = Yazının KENDİ genişliği kadar SOLA git (ekranın solundan tamamen çık)
+                   -50% = Dikey ortalamayı koru
+                */
+                transform: translate(-100%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tum-sayfa-yazi">Naber CÜCE</div>
+
+</body>
+</html>
